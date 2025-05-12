@@ -13,4 +13,15 @@ void createQueue() {
     }
 }
 
+// Encrypt a single character
+char encryptCharacter(char character, int shiftKey) {
+    if (!isalpha(character)){
+        return character;
+    }
+    
+    character = toupper(character);
+    int position = (character - 'A' + shiftKey + MAXSIZE) % MAXSIZE;
+    return queue[position];
+}
+
 
