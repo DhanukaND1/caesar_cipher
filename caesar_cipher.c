@@ -24,4 +24,11 @@ char encryptCharacter(char character, int shiftKey) {
     return queue[position];
 }
 
+void encryptMessage(char *message, int shiftKey, char *result) {
+    for (int i = 0; message[i] != '\0'; i++) {
+        result[i] = encryptCharacter(message[i], shiftKey);
+    }
+    result[strlen(message)] = '\0';
+}
+
 
