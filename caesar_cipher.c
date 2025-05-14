@@ -13,7 +13,7 @@ void createQueue() {
     }
 }
 
-// Decrypt a single character
+// Decrypt a single character(convert to orginal chracter)
 char decryptCharacter(char character, int shiftKey) {
     if (!isalpha(character)) return character;
 
@@ -22,7 +22,7 @@ char decryptCharacter(char character, int shiftKey) {
     return queue[position];
 }
 
-// Decrypt full message
+// Decrypt full message(convert to orginal message)
 void decryptMessage(char *message, int shiftKey, char *result) {
     for (int i = 0; message[i] != '\0'; i++) {
         result[i] = decryptCharacter(message[i], shiftKey);
