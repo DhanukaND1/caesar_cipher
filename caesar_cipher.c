@@ -13,4 +13,23 @@ void createQueue() {
     }
 }
 
+// Encrypt a single character
+char encryptCharacter(char character, int shiftKey) {
+    if (!isalpha(character)){
+        return character;
+    }
+    
+    character = toupper(character);
+    int position = (character - 'A' + shiftKey + MAXSIZE) % MAXSIZE;
+    return queue[position];
+}
+
+// Encrypt full message
+void encryptMessage(char *message, int shiftKey, char *result) {
+    for (int i = 0; message[i] != '\0'; i++) {
+        result[i] = encryptCharacter(message[i], shiftKey);
+    }
+    result[strlen(message)] = '\0';
+}
+
 
