@@ -32,4 +32,19 @@ void encryptMessage(char *message, int shiftKey, char *result) {
     result[strlen(message)] = '\0';
 }
 
+// Decrypt a single character(convert to orginal chracter)
+char decryptCharacter(char character, int shiftKey) {
+    if (!isalpha(character)) return character;
 
+    character = toupper(character);
+    int position = (character - 'A' - shiftKey + MAXSIZE) % MAXSIZE;
+    return queue[position];
+}
+
+// Decrypt full message(convert to orginal message)
+void decryptMessage(char *message, int shiftKey, char *result) {
+    for (int i = 0; message[i] != '\0'; i++) {
+        result[i] = decryptCharacter(message[i], shiftKey);
+    }
+    result[strlen(message)] = '\0';
+}
