@@ -46,5 +46,48 @@ void decryptMessage(char *message, int shiftKey, char *result) {
     for (int i = 0; message[i] != '\0'; i++) {
         result[i] = decryptCharacter(message[i], shiftKey);
     }
-    result[strlen(message)] = '\0';
+    result[strlen(message)] = '\0';
+}
+
+// Main function
+int main() {
+    char choice;
+    char message[1000], result[1000];
+    int shiftKey;
+
+    createQueue();
+
+    printf("Encryption (E) or Decryption (D)?: ");
+    scanf(" %c", &choice);
+    getchar(); // consume newline
+
+    if (choice == 'E' || choice == 'e') {
+        printf("Enter your message: ");
+        fgets(message, sizeof(message), stdin);
+        message[strcspn(message, "\n")] = '\0'; // remove newline
+
+        printf("Enter shift key: ");
+        scanf("%d", &shiftKey);
+
+        encryptMessage(message, shiftKey, result);
+        printf("***********\n");
+        printf("Encrypted Message: %s\n", result);
+
+    } else if (choice == 'D' || choice == 'd') {
+        printf("Enter encrypted message: ");
+        fgets(message, sizeof(message), stdin);
+        message[strcspn(message, "\n")] = '\0';
+
+        printf("Enter shift key: ");
+        scanf("%d", &shiftKey);
+
+        decryptMessage(message, shiftKey, result);
+        printf("***********\n");
+        printf("Original Message: %s\n", result);
+
+    } else {
+        printf("Invalid choice. Please enter 'E' or 'D'.\n");
+    }
+
+    return 0;
 }
